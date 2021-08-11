@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+      integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>ThapaTechnical Website</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/cloth_form.css">
+    <link rel="stylesheet" href="/css/blood_form.css">
+  </head>
+  <body>
+
+      <div class="alert alert-success" id="show" role="alert" style="font-size: x-large;">
+      </div>
+      <script>
+        var decodedJson = decodeURIComponent("{{{encodedJson}}}");
+        console.log(decodedJson);
+        if(decodedJson===''){
+          document.getElementById('show').style.display = 'none';
+        }
+        else{
+          document.getElementById('show').innerHTML = `<strong> Success:  </strong> ${decodedJson}`;
+        }
+      </script>
+    <header>
+      <nav>
+        <!-- left side menu  -->
+        <div class="left-side-menu">
+          <div class="logo">
+            <a href="/index">
+              <img src="/images/charity-removebg-preview.png" alt="logo" />
+            </a>
+          </div>
+
+          <div class="sub-menu">
+            <a href="/index">
+              <li>Home</li>
+            </a>
+            <a href="#cloth-section">
+              <li>Cloth</li>
+            </a>
+            <a href="#blood-section">
+              <li>Blood</li>
+            </a>
+            <a href="#money-section">
+              <li>Charity</li>
+            </a>
+          </div>
+        </div>
+
+        <!-- right side menu  -->
+        <div class="right-side-menu">
+          <div class="sub-menu">
+            <a href="/login_form">
+              <li>Log In</li>
+            </a>
+            <a href="/Signup_form">
+              <button>Sign Up</button>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- our hero section started -->
+    <section class="main-hero-section">
+      <div class="hero-left-side">
+          <h1>German Proverb :-</h1>
+          <p>The small charity that comes from the heart is better than the great charity that comes from the head.</p>
+          <div class="button-group">
+            <a href="#">
+              <img src="/images/icons/appstore.png" alt="App Store" class="appstore">
+            </a>
+            <a href="#">
+              <img src="/images/icons/googlePlay.png" alt="Play store" class="playstore">
+            </a>
+          </div>
+      </div>
+      <div class="hero-right-side">
+          <img src="/images/charity-background-img-removebg.png" alt="">
+      </div>
+    </section>
+    <!-- <section class="hr"><hr id="first-second"></section> -->
+    <section id="main" style="display: none;">
+      <section class="glass">
+          <div class="close">+</div>
+          <form action="/Cloth_Donation" method="POST">
+              <div class="row">
+                  <input type="text" name="fname" placeholder="First Name">
+                  <input type="text" name="lname" placeholder="Last Name">
+              </div>
+              <div class="row">
+                  <input type="email" name="email" placeholder="Email address" id="email">
+                  <input type="number" name="phone" id="phone" placeholder="Mobile Number" minlength="10" maxlength="10">
+              </div>
+              <div class="row">
+                  <input type="number" name="pincode" id="pincodec" placeholder="Pincode" min="100000" max="999999" onchange='checkpin()'>
+                  <!-- <input type="text" name="" id="pinoutput"> -->
+                  <div id="pinoutput"></div>
+              </div>
+              <div class="row">
+                  <textarea name="address" id="address" placeholder="Address" cols="54" rows="6"></textarea>
+              </div>
+              <div class="row">
+                  <button type="submit">Submit</button>
+              </div>
+          </form>
+      </section>
+    </section>
+    <section class="main-cloth-section" id="cloth-section">
+      <div class="cloth-left-side">
+        <img src="/images/cloths-donner.png" alt="">
+      </div>
+      <div class="cloth-right-side">
+        <h1>German Proverb :-</h1>
+        <p>The small charity that comes from the heart is better than the great charity that comes from the head.</p>
+        <div class="button-group">
+          <button id="donate_cloths" >Donate Cloths</button>
+        </div>
+      </div>
+    </section>
+    <section id="mainb" style="display: none;">
+      <section class="glassb">
+        <div class="closeb">+</div>
+        <form action="/Blood_Donation" method="POST">
+          <div class="row">
+            <input type="text" name="fname" placeholder="First Name">
+            <input type="text" name="lname" placeholder="Last Name">
+          </div>
+          <div class="row">
+            <input type="email" name="email" placeholder="Email address" id="email">
+            <input type="number" name="phone" id="phone" placeholder="Mobile Number" minlength="10" maxlength="10">
+          </div>
+          <div class="row">
+            <input type="number" name="pincode" id="pincode" placeholder="Pincode" min="100000" max="999999" onchange="checkpinb()">
+            <!-- <input type="text" name="" id="pinoutput"> -->
+            <div id="pinoutputb"></div>
+          </div>
+          <div class="row">
+            <textarea name="address" id="address" placeholder="Address" cols="54" rows="6"></textarea>
+          </div>
+          <div class="row">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+    </section>
+    <section class="main-blood-section" id="blood-section">
+      <div class="blood-left-side">
+        <h1>German Proverb :-</h1>
+        <p>The small charity that comes from the heart is better than the great charity that comes from the head.</p>
+        <div class="button-group">
+          <button id="donate_blood">Donate Blood</button>
+        </div>
+      </div>
+      <div class="blood-right-side">
+        <img src="/images/blood_donation.png" alt="">
+      </div>
+    </section>
+    <section class="main-money-section" id="money-section">
+      <div class="money-left-side">
+        <img src="/images/money-donor.png" alt="">
+      </div>
+      <div class="money-right-side">
+        <h1>German Proverb :-</h1>
+        <p>The small charity that comes from the heart is better than the great charity that comes from the head.</p>
+        <div class="button-group">
+          <!-- <button id="donate_money">Donate money</button> -->
+          <a href="https://pages.razorpay.com/pl_HfXcs7nxLwVxpP/view">donate money</a>
+        </div>
+      </div>
+    </section>
+    <script src="/js/pincode.js"></script>
+  </body>
+</html>
