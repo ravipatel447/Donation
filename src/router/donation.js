@@ -17,7 +17,7 @@ router.post('/Cloth_Donation',auth,async(req,res)=>{
     try{
         await cloth_donation.save();
         res.render('index',{
-            encodedJson : encodeURIComponent("your are cloth doanation is completed")
+            encodedJsons : encodeURIComponent("your are cloth doanation is completed")
         });
     }
     catch(e){

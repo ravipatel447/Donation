@@ -220,3 +220,10 @@ a:hover{
 .close_login:hover{
     color: rgb(0, 0, 0);
 }
+#showw{
+    transition-duration: 2s;
+    background-color: rgb(253, 243, 209);
+    color: rgb(128, 101, 32);
+    border-radius: 2rem;
+    padding: 1rem;
+  }

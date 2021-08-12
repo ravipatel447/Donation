@@ -11,24 +11,38 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Donation Website</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/cloth_form.css">
     <link rel="stylesheet" href="/css/blood_form.css">
   </head>
   <body>
-
-      <div class="alert alert-success" id="show" role="alert" style="font-size: x-large;">
+      <div class="alert alert-success" id="shows" role="alert" style="font-size: x-large;">
       </div>
       <script>
-        var decodedJson = decodeURIComponent("{{{encodedJson}}}");
-        console.log(decodedJson);
-        if(decodedJson===''){
-          document.getElementById('show').style.display = 'none';
+        var decodedJsons = decodeURIComponent("{{{encodedJsons}}}");
+        if(decodedJsons===''){
+          document.getElementById('shows').style.display = 'none';
         }
         else{
-          document.getElementById('show').innerHTML = `<strong> Success:  </strong> ${decodedJson}`;
+          document.getElementById('shows').innerHTML = `<strong> Success:  </strong> ${decodedJsons}`;
+          setTimeout(()=>{
+            document.getElementById('shows').style.display = 'none';
+          },5000)
+        }
+      </script>
+      <div class="alert alert-warning" id="showw" role="alert" style="font-size: x-large;">
+      </div>
+      <script>
+        var decodedJsonw = decodeURIComponent("{{{encodedJsonw}}}");
+        if(decodedJsonw===''){
+          document.getElementById('showw').style.display = 'none';
+        }
+        else{
+          document.getElementById('showw').innerHTML = `<strong> WARNING!:  </strong> ${decodedJsonw}`;
+          setTimeout(()=>{
+            document.getElementById('showw').style.display = 'none';
+          },5000)
         }
       </script>
     <header>
@@ -60,12 +74,28 @@
         <!-- right side menu  -->
         <div class="right-side-menu">
           <div class="sub-menu">
-            <a href="/login_form">
+            <a href="/login_form" id="login">
               <li>Log In</li>
             </a>
-            <a href="/Signup_form">
+            <a href="/Signup_form" id="signup">
               <button>Sign Up</button>
             </a>
+            <div id="email"></div>
+            <form action="/dusers/logout" id="logout" method="post">
+              <button type="submit">Logout</button>
+            </form>
+            <script>
+              var eemail = decodeURIComponent("{{{email}}}");
+              if(eemail===''){
+                document.getElementById('email').style.display = 'none';
+                document.getElementById('logout').style.display = 'none';
+              }
+              else{
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('signup').style.display = 'none';
+                document.getElementById('email').innerHTML = `<strong>${eemail}</strong> `;
+              }
+            </script>
           </div>
         </div>
       </nav>
@@ -98,13 +128,13 @@
                   <input type="text" name="lname" placeholder="Last Name">
               </div>
               <div class="row">
-                  <input type="email" name="email" placeholder="Email address" id="email">
+                  <input type="email" name="email" placeholder="Email address">
                   <input type="number" name="phone" id="phone" placeholder="Mobile Number" minlength="10" maxlength="10">
               </div>
               <div class="row">
                   <input type="number" name="pincode" id="pincodec" placeholder="Pincode" min="100000" max="999999" onchange='checkpin()'>
                   <!-- <input type="text" name="" id="pinoutput"> -->
-                  <div id="pinoutput"></div>
+                  <div id="pinoutput">City</div>
               </div>
               <div class="row">
                   <textarea name="address" id="address" placeholder="Address" cols="54" rows="6"></textarea>
@@ -136,13 +166,13 @@
             <input type="text" name="lname" placeholder="Last Name">
           </div>
           <div class="row">
-            <input type="email" name="email" placeholder="Email address" id="email">
+            <input type="email" name="email" placeholder="Email address">
             <input type="number" name="phone" id="phone" placeholder="Mobile Number" minlength="10" maxlength="10">
           </div>
           <div class="row">
             <input type="number" name="pincode" id="pincode" placeholder="Pincode" min="100000" max="999999" onchange="checkpinb()">
             <!-- <input type="text" name="" id="pinoutput"> -->
-            <div id="pinoutputb"></div>
+            <div id="pinoutputb">City</div>
           </div>
           <div class="row">
             <textarea name="address" id="address" placeholder="Address" cols="54" rows="6"></textarea>

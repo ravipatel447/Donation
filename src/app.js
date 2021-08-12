@@ -4,6 +4,7 @@ require('./db/mongoose');
 const routerUser = require('./router/user');
 const routerDonations = require('./router/donation');
 const cookieparser = require('cookie-parser');
+const auth_login = require('./middleware/auth-login');
 const hbs = require('hbs');
 const app = express();
 const port = process.env.PORT
@@ -16,11 +17,9 @@ app.use(routerUser);
 app.use(routerDonations);
 
 app.set('view engine','hbs')
-app.get('/index',(req,res)=>{
+app.get('/index',auth_login,(req,res)=>{
     res.render('index',{
-        title:'donation with charity',
-        donate:'3500 rupess',
-        alert: ''
+        email : encodeURIComponent(req.user.email)
     });
 })
 app.get('/login_form',(req,res)=>{
@@ -35,8 +34,10 @@ app.get('/Signup_form',(req,res)=>{
         donate:'3500 rupess'
     });
 })
-app.get('*',(req,res)=>{
-    res.render('index');
+app.get('*',auth_login,(req,res)=>{
+    res.render('index',{
+        email : encodeURIComponent(req.user.email)
+    });
 })
 
 app.listen(port,()=>{

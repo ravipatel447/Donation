@@ -357,3 +357,21 @@
     color: #283526;
     /* background-image: linear-gradient(red, yellow, green); */
   }
+  #shows{
+    background-color: rgb(218, 236, 219);
+    color: rgb(42, 86, 42);
+    border-radius: 2rem;
+    padding: 1rem;
+  }
+  #showw{
+    transition-duration: 2s;
+    background-color: rgb(253, 243, 209);
+    color: rgb(128, 101, 32);
+    border-radius: 2rem;
+    padding: 1rem;
+  }
+  #email{
+    font-size: x-large;
+    margin: 0rem 5rem;
+    color: var(--button-background);
+  }

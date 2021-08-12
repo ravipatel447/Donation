@@ -16,30 +16,35 @@ router.post('/dusers',async (req,res)=>{
             const token = await user.generateAuthToken();
             res.cookie("jwt",token);
             res.render('index',{
-                encodedJson : encodeURIComponent("Your account has been created")
+                encodedJsons : encodeURIComponent("Your account has been created"),
+                email : encodeURIComponent(user.email)
             });
         }
         catch(e){
-            res.status(400).send(e);
+            res.status(400).render('Signup_form',{
+                    encodedJsonw : encodeURIComponent("Your account has been already created, try to login with this email!")
+                });
+            }
         }
-    }
-    else{
-        res.status(404).send("your password are different")
-    }
-})
-router.post('/dusers/login',async (req,res)=>{
-    const data = (req.body);
-    console.log(data);
-    try{
-        const user = await User.findByCredentials(req.body.email,req.body.password);
-        const token = await user.generateAuthToken();
-        res.cookie("jwt",token);
-        res.render('index',{
-            encodedJson : encodeURIComponent("Yor are Successfully loged in!")
-        });
-    }
+        else{
+            res.status(404).send("your password are different")
+        }
+    })
+    router.post('/dusers/login',async (req,res)=>{
+        try{
+            const user = await User.findByCredentials(req.body.email,req.body.password);
+            const token = await user.generateAuthToken();
+            res.cookie("jwt",token);
+            res.render('index',{
+                encodedJsons : encodeURIComponent("Yor are Successfully loged in!"),
+                email : encodeURIComponent(user.email)
+            });
+        }
     catch(e){
-        res.status(400).send(e);
+        res.render('login_form',{
+            encodedJsonw : encodeURIComponent("Wrong Email or Password")
+        });
+        // res.status(404).send("Your data is not matched with our database")
     }
 })
 router.post('/dusers/logout',auth,async(req,res)=>{
@@ -48,10 +53,15 @@ router.post('/dusers/logout',auth,async(req,res)=>{
             return token.token !== req.token;
         })
         await req.user.save();
-        res.send("now you are loged out");
+        res.render('index',{
+            encodedJsons : encodeURIComponent("Yor are Successfully loged Out!")
+        });
     }
     catch(e){
         res.status(500).send(e);
+        res.status(500).render('index',{
+            encodedJsonw : encodeURIComponent("Server Error!")
+        });
     }
 })
 router.post('/dusers/logoutall',auth,async(req,res)=>{

@@ -2,12 +2,26 @@
 <html>
 <head>
 	<title>Donation Signup Form</title>
-	<link rel="stylesheet" type="text/css" href="css/login_style.css">
+	<link rel="stylesheet" type="text/css" href="/css/login_style.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+	<div class="alert alert-warning" id="showw" role="alert" style="font-size: x-large;">
+      </div>
+      <script>
+        var decodedJsonw = decodeURIComponent("{{{encodedJsonw}}}");
+        if(decodedJsonw===''){
+          document.getElementById('showw').style.display = 'none';
+        }
+        else{
+          document.getElementById('showw').innerHTML = `<strong> WARNING!:  </strong> ${decodedJsonw}`;
+		  setTimeout(()=>{
+            document.getElementById('showw').style.display = 'none';
+          },5000)
+        }
+      </script>
 	<div class="container">
 		<div class="login-content">
 			<a href="./index.html" class="close_login">&#8249;</a>
@@ -42,10 +56,21 @@
             	   </div>
             	</div>
 				<a href="/login_form">I have an Account</a>
-            	<input type="submit" class="btn" value="Sign Up">
+            	<input type="submit" class="btn" value="Sign Up" onclick="return Validate()">
             </form>
         </div>
     </div>
+	<script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("cpassword").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
     <script type="text/javascript" src="js/login_main.js"></script>
 </body>
 </html>
