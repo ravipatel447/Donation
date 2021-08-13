@@ -21,7 +21,9 @@ router.post('/Cloth_Donation',auth,async(req,res)=>{
         });
     }
     catch(e){
-        res.status(400).send(e);
+        res.status(400).render('index',{
+            encodedJsonw : encodeURIComponent("your have already submited details for cloth doanation")
+        });
     }
 })
 router.get('/Cloth_Donation/:id',auth,async(req,res)=>{
@@ -89,7 +91,9 @@ router.post('/Blood_Donation',auth,async(req,res)=>{
         });
     }
     catch(e){
-        res.status(400).send(e);
+        res.status(400).render('index',{
+            encodedJsonw : encodeURIComponent("your have already submited details for blood doanation")
+        });
     }
 })
 router.get('/Blood_Donation/:id',auth,async(req,res)=>{
